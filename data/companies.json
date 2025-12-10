@@ -1,0 +1,291 @@
+[
+  {
+    "name": "Enel",
+    "logo": "/logos/enel.png",
+    "descrizione_it": "Energia italiana che guarda al futuro.",
+    "categoria": "Energia"
+  },
+  {
+    "name": "Eni",
+    "logo": "/logos/eni.png",
+    "descrizione_it": "Una delle principali realtà globali nel settore energia.",
+    "categoria": "Energia"
+  },
+  {
+    "name": "Intesa Sanpaolo",
+    "logo": "/logos/intesasanpaolo.png",
+    "descrizione_it": "La principale banca italiana, solida e conosciuta.",
+    "categoria": "Finanza"
+  },
+  {
+    "name": "UniCredit",
+    "logo": "/logos/unicredit.png",
+    "descrizione_it": "Un gruppo bancario europeo con forte presenza in Italia.",
+    "categoria": "Finanza"
+  },
+  {
+    "name": "Ferrari",
+    "logo": "/logos/ferrari.png",
+    "descrizione_it": "L’eccellenza italiana delle auto sportive.",
+    "categoria": "Auto"
+  },
+  {
+    "name": "Stellantis",
+    "logo": "/logos/stellantis.png",
+    "descrizione_it": "Casa automobilistica globale nata dall’unione FCA–PSA.",
+    "categoria": "Auto"
+  },
+  {
+    "name": "Pirelli",
+    "logo": "/logos/pirelli.png",
+    "descrizione_it": "Pneumatici premium, icona del Made in Italy.",
+    "categoria": "Auto"
+  },
+  {
+    "name": "A2A",
+    "logo": "/logos/a2a.png",
+    "descrizione_it": "Multiservizi italiana attiva in energia e ambiente.",
+    "categoria": "Energia"
+  },
+  {
+    "name": "Terna",
+    "logo": "/logos/terna.png",
+    "descrizione_it": "Gestisce la rete elettrica italiana.",
+    "categoria": "Energia"
+  },
+  {
+    "name": "Poste Italiane",
+    "logo": "/logos/posteitaliane.png",
+    "descrizione_it": "Servizi postali, bancari e assicurativi italiani.",
+    "categoria": "Servizi"
+  },
+  {
+    "name": "AS Roma",
+    "logo": "/logos/asroma.png",
+    "descrizione_it": "La squadra del cuore di molti tifosi romanisti.",
+    "categoria": "Sport"
+  },
+
+  {
+    "name": "LVMH",
+    "logo": "/logos/lvmh.png",
+    "descrizione_it": "Il gruppo del lusso più grande al mondo.",
+    "categoria": "Lusso"
+  },
+  {
+    "name": "Kering",
+    "logo": "/logos/kering.png",
+    "descrizione_it": "Moda e lusso con marchi come Gucci e Balenciaga.",
+    "categoria": "Lusso"
+  },
+  {
+    "name": "Hermès",
+    "logo": "/logos/hermes.png",
+    "descrizione_it": "Eleganza e artigianalità francese iconica.",
+    "categoria": "Lusso"
+  },
+  {
+    "name": "Moncler",
+    "logo": "/logos/moncler.png",
+    "descrizione_it": "Moda italiana di alta gamma, simbolo di stile.",
+    "categoria": "Moda"
+  },
+  {
+    "name": "Inditex",
+    "logo": "/logos/inditex.png",
+    "descrizione_it": "Il gruppo di Zara, leader mondiale nella moda fast fashion.",
+    "categoria": "Moda"
+  },
+  {
+    "name": "Adidas",
+    "logo": "/logos/adidas.png",
+    "descrizione_it": "Uno dei brand sportivi più riconosciuti al mondo.",
+    "categoria": "Sport"
+  },
+  {
+    "name": "Puma",
+    "logo": "/logos/puma.png",
+    "descrizione_it": "Marchio sportivo tedesco iconico e diffuso.",
+    "categoria": "Sport"
+  },
+
+  {
+    "name": "Mercedes-Benz",
+    "logo": "/logos/mercedesbenz.png",
+    "descrizione_it": "Auto di lusso tedesche simbolo di qualità.",
+    "categoria": "Auto"
+  },
+  {
+    "name": "BMW",
+    "logo": "/logos/bmw.png",
+    "descrizione_it": "Prestazioni e design, un'icona della mobilità premium.",
+    "categoria": "Auto"
+  },
+  {
+    "name": "Volkswagen",
+    "logo": "/logos/volkswagen.png",
+    "descrizione_it": "L’auto per tutti, dal Maggiolino alle moderne EV.",
+    "categoria": "Auto"
+  },
+  {
+    "name": "Porsche",
+    "logo": "/logos/porsche.png",
+    "descrizione_it": "Auto sportive di lusso, ingegneria tedesca al top.",
+    "categoria": "Auto"
+  },
+  {
+    "name": "Renault",
+    "logo": "/logos/renault.png",
+    "descrizione_it": "Storico marchio francese con ampia gamma auto.",
+    "categoria": "Auto"
+  },
+
+  {
+    "name": "Ryanair",
+    "logo": "/logos/ryanair.png",
+    "descrizione_it": "La low-cost più famosa d’Europa.",
+    "categoria": "Viaggi"
+  },
+  {
+    "name": "Lufthansa",
+    "logo": "/logos/lufthansa.png",
+    "descrizione_it": "Compagnia aerea tedesca, affidabile e storica.",
+    "categoria": "Viaggi"
+  },
+  {
+    "name": "Air France-KLM",
+    "logo": "/logos/airfranceklm.png",
+    "descrizione_it": "Il grande gruppo aereo franco-olandese.",
+    "categoria": "Viaggi"
+  },
+  {
+    "name": "Booking",
+    "logo": "/logos/booking.png",
+    "descrizione_it": "Il punto di riferimento per prenotare viaggi e hotel.",
+    "categoria": "Viaggi"
+  },
+
+  {
+    "name": "Heineken",
+    "logo": "/logos/heineken.png",
+    "descrizione_it": "La birra olandese più famosa al mondo.",
+    "categoria": "Beverage"
+  },
+  {
+    "name": "Carlsberg",
+    "logo": "/logos/carlsberg.png",
+    "descrizione_it": "Storica birra europea, conosciuta globalmente.",
+    "categoria": "Beverage"
+  },
+  {
+    "name": "Nestlé",
+    "logo": "/logos/nestle.png",
+    "descrizione_it": "Il gigante alimentare svizzero.",
+    "categoria": "Food"
+  },
+
+  {
+    "name": "Apple",
+    "logo": "/logos/apple.png",
+    "descrizione_it": "La mela più famosa: tecnologia e design.",
+    "categoria": "Tech"
+  },
+  {
+    "name": "Amazon",
+    "logo": "/logos/amazon.png",
+    "descrizione_it": "Il gigante dell’e-commerce e del cloud.",
+    "categoria": "Tech"
+  },
+  {
+    "name": "Google",
+    "logo": "/logos/google.png",
+    "descrizione_it": "Il motore di ricerca che tutti usiamo.",
+    "categoria": "Tech"
+  },
+  {
+    "name": "Microsoft",
+    "logo": "/logos/microsoft.png",
+    "descrizione_it": "Software, cloud e innovazione globale.",
+    "categoria": "Tech"
+  },
+  {
+    "name": "Meta",
+    "logo": "/logos/meta.png",
+    "descrizione_it": "Facebook, Instagram e il futuro del social.",
+    "categoria": "Tech"
+  },
+  {
+    "name": "Tesla",
+    "logo": "/logos/tesla.png",
+    "descrizione_it": "Auto elettriche e innovazione nel mondo EV.",
+    "categoria": "Auto"
+  },
+  {
+    "name": "NVIDIA",
+    "logo": "/logos/nvidia.png",
+    "descrizione_it": "Leader mondiale nei chip per AI.",
+    "categoria": "Tech"
+  },
+  {
+    "name": "Intel",
+    "logo": "/logos/intel.png",
+    "descrizione_it": "Storica azienda di semiconduttori.",
+    "categoria": "Tech"
+  },
+  {
+    "name": "AMD",
+    "logo": "/logos/amd.png",
+    "descrizione_it": "Processori e schede grafiche ad alte prestazioni.",
+    "categoria": "Tech"
+  },
+  {
+    "name": "Netflix",
+    "logo": "/logos/netflix.png",
+    "descrizione_it": "Film e serie TV che hanno cambiato lo streaming.",
+    "categoria": "Media"
+  },
+
+  {
+    "name": "Coca-Cola",
+    "logo": "/logos/cocacola.png",
+    "descrizione_it": "La bevanda più iconica al mondo.",
+    "categoria": "Food"
+  },
+  {
+    "name": "Pepsi",
+    "logo": "/logos/pepsi.png",
+    "descrizione_it": "Storica rivale di Coca-Cola.",
+    "categoria": "Food"
+  },
+  {
+    "name": "McDonald’s",
+    "logo": "/logos/mcdonalds.png",
+    "descrizione_it": "Il fast food più famoso del mondo.",
+    "categoria": "Food"
+  },
+  {
+    "name": "Starbucks",
+    "logo": "/logos/starbucks.png",
+    "descrizione_it": "Il caffè americano più famoso del pianeta.",
+    "categoria": "Food"
+  },
+  {
+    "name": "KFC",
+    "logo": "/logos/kfc.png",
+    "descrizione_it": "Famoso per il pollo fritto.",
+    "categoria": "Food"
+  },
+
+  {
+    "name": "Nike",
+    "logo": "/logos/nike.png",
+    "descrizione_it": "Lo sportswear più iconico al mondo.",
+    "categoria": "Sport"
+  },
+  {
+    "name": "Under Armour",
+    "logo": "/logos/underarmour.png",
+    "descrizione_it": "Abbigliamento sportivo tecnico.",
+    "categoria": "Sport"
+  }
+]

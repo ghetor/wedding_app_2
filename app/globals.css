@@ -1,26 +1,133 @@
-@import "tailwindcss";
+/* ============================
+   PALETTE GHET — Dark Premium
+   ============================ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-ghet: #111318;          /* sfondo dark velvet */
+  --bg-card: #181B21;          /* card rotonde premium */
+  --text-main: #E3E4E8;        /* metal light */
+  --text-secondary: #A9ACB3;   /* grigio chiaro elegante */
+  --text-sabbia: #CFC6B8;      /* accento sabbia */
+  --accent: #0F6D6A;           /* petrolio elegante */
+  --accent-soft: #174F53;
+
+  --radius-full: 26px;         /* morbido massimo */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* BODY */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-ghet);
+  color: var(--text-main);
+  font-family: var(--font-urbanist), sans-serif;
+  margin: 0;
+}
+
+/* CARD */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-full);
+  padding: 1.6rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+}
+
+/* TITOLI */
+.title-ghet {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-sabbia);
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+
+/* SUBTITLE */
+.subtitle-ghet {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* BOTTONI */
+.btn-ghet {
+  background: var(--accent);
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--radius-full);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  transition: 0.2s;
+}
+
+.btn-ghet:hover {
+  filter: brightness(1.15);
+}
+
+/* Fade-in soft */
+.fade {
+  animation: fade 0.45s ease-out both;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* INPUT FINTECH */
+.input-ghet {
+  width: 100%;
+  padding: 1rem;
+  padding-left: 1.2rem;
+  background: #1F2229;
+  border-radius: var(--radius-full);
+  border: 1px solid #2A2D34;
+  color: var(--text-main);
+  font-size: 1.1rem;
+}
+
+.input-ghet:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* COMPANY BADGE */
+.company-pill {
+  background: #23262D;
+  border-radius: var(--radius-full);
+  padding: 0.7rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.3s;
+}
+
+.company-pill.selected {
+  border-color: var(--accent);
+  background: #1B4444;
+}
+
+.company-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+/* SLIDER */
+.slider-ghet {
+  accent-color: var(--accent);
+}
+
+/* Layout container */
+.container-ghet {
+  padding: 1.6rem;
+  max-width: 600px;
+  margin: auto;
 }
