@@ -26,7 +26,6 @@ export default function RiepilogoPage() {
         selectedCompanies.map((c) => [c.name, c.percentage])
       );
 
-      // INVIO AL GOOGLE SHEET
       await fetch("/api/sendToSheet", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -42,10 +41,9 @@ export default function RiepilogoPage() {
         }),
       });
 
-      // Dopo invio → pagina finale
       router.push("/grazie");
     } catch (err) {
-      alert("Errore durante l’invio agli sposi. Riprova.");
+      alert("Errore durante l’invio. Riprova.");
       console.error(err);
     }
   }
@@ -53,17 +51,16 @@ export default function RiepilogoPage() {
   return (
     <PageContainer>
       <BackButton />
+
       <PageTitle title="Riepilogo del tuo regalo" />
 
-      {/* IMPORTO TOTALE */}
-      <Card className="text-center mb-4">
+      <Card className="text-center mb-section">
         <h2 style={{ fontSize: "20px", marginBottom: "6px" }}>Importo totale</h2>
         <p style={{ fontSize: "32px", fontWeight: "700", color: "var(--accent)" }}>
           {amount.toFixed(2)} €
         </p>
       </Card>
 
-      {/* DISTRIBUZIONE */}
       <h3 className="page-subtitle" style={{ textAlign: "left" }}>
         Distribuzione del regalo
       </h3>
@@ -72,16 +69,11 @@ export default function RiepilogoPage() {
         const euro = (amount * c.percentage) / 100;
 
         return (
-          <Card key={c.name} className="mb-4">
+          <Card key={c.name} className="mb-section">
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-                <Image
-                  src={c.logo}
-                  width={42}
-                  height={42}
-                  alt={c.name}
-                  className="company-logo"
-                />
+                <Image src={c.logo} width={42} height={42} alt={c.name} className="company-logo" />
+
                 <div>
                   <p style={{ fontSize: "18px", fontWeight: 600 }}>{c.name}</p>
                   <p style={{ opacity: 0.7 }}>{c.percentage}%</p>
@@ -96,12 +88,11 @@ export default function RiepilogoPage() {
         );
       })}
 
-      {/* PARTECIPANTI */}
-      <h3 className="page-subtitle" style={{ textAlign: "left", marginTop: "20px" }}>
+      <h3 className="page-subtitle" style={{ textAlign: "left", marginTop: "5px" }}>
         Partecipanti
       </h3>
 
-      <Card className="mb-6">
+      <Card className="mb-section">
         {participants.map((p, i) => (
           <p
             key={i}
@@ -118,7 +109,6 @@ export default function RiepilogoPage() {
         ))}
       </Card>
 
-      {/* BOTTONE DI INVIO */}
       <Button onClick={inviaSelezione}>
         Conferma e invia la tua selezione agli sposi
       </Button>

@@ -5,6 +5,13 @@ import { useGiftStore } from "@/store/useGiftStore";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
+import PageContainer from "@/components/layout/PageContainer";
+import PageTitle from "@/components/layout/PageTitle";
+import Card from "@/components/ui/Card";
+import Slider from "@/components/ui/Slider";
+import Button from "@/components/ui/Button";
+import BackButton from "@/components/layout/BackButton";
+
 export default function DistribuzionePage() {
   const router = useRouter();
   const { amount, selectedCompanies, updateCompanyPercentage } = useGiftStore();
@@ -16,32 +23,44 @@ export default function DistribuzionePage() {
   const [scrollTopVisible, setScrollTopVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrollTopVisible(window.scrollY > 250);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const listener = () => setScrollTopVisible(window.scrollY > 250);
+    window.addEventListener("scroll", listener);
+    return () => window.removeEventListener("scroll", listener);
   }, []);
 
   function handleChange(i: number, value: number) {
-    const val = Math.max(0, Math.min(100, value));
+    const adjusted = Math.max(0, Math.min(100, value));
     const updated = [...localPercentages];
-    updated[i] = val;
+    updated[i] = adjusted;
     setLocalPercentages(updated);
-    updateCompanyPercentage(i, val);
+    updateCompanyPercentage(i, adjusted);
   }
+
+  // step percentuale equivalente a 10€
+  const stepPercentage = (10 / amount) * 100;
 
   const totalPercentage = localPercentages.reduce((a, b) => a + b, 0);
   const euroPartial = localPercentages.map((p) => (amount * p) / 100);
 
   return (
-    <div className="container-ghet fade">
+    <PageContainer>
+      <BackButton />
 
-      <h1 className="title-ghet">Distribuisci l’importo</h1>
-      <p className="subtitle-ghet">Scegli quanto assegnare a ciascuna azienda</p>
+      <PageTitle
+        title="Distribuisci l’importo"
+        subtitle="Scegli quanto assegnare a ciascuna azienda"
+      />
 
       {selectedCompanies.map((c, i) => (
-        <div key={c.name} className="card" style={{ marginBottom: "20px" }}>
-
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <Card key={c.name} className="mb-section">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "10px",
+            }}
+          >
             <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
               <Image src={c.logo} width={48} height={48} alt={c.name} className="company-logo" />
               <span style={{ fontSize: "20px" }}>{c.name}</span>
@@ -52,25 +71,23 @@ export default function DistribuzionePage() {
             </div>
           </div>
 
-          <input
-            type="range"
-            min="0"
-            max="100"
-            className="slider-ghet"
+          <Slider
             value={localPercentages[i]}
+            min={0}
+            max={100}
+            step={stepPercentage}
             onChange={(e) => handleChange(i, Number(e.target.value))}
-            style={{ width: "100%", marginTop: "16px" }}
           />
 
           <div style={{ textAlign: "right", marginTop: "6px", fontSize: "18px" }}>
             {localPercentages[i]}%
           </div>
-        </div>
+        </Card>
       ))}
 
-      <div className="card" style={{ textAlign: "center", marginTop: "15px" }}>
-        <h3 style={{ fontSize: "20px", marginBottom: "5px" }}>Totale allocato</h3>
-        <div
+      <Card className="text-center mb-section">
+        <h3 style={{ marginBottom: "8px", fontSize: "20px" }}>Totale allocato</h3>
+        <p
           style={{
             fontSize: "24px",
             fontWeight: "700",
@@ -78,38 +95,31 @@ export default function DistribuzionePage() {
           }}
         >
           {totalPercentage}% · {(amount * totalPercentage / 100).toFixed(2)} €
-        </div>
-      </div>
+        </p>
+      </Card>
 
-      <button
-        className="btn-ghet"
-        disabled={totalPercentage !== 100}
+      <Button
         onClick={() => router.push("/riepilogo")}
-        style={{
-          marginTop: "25px",
-          opacity: totalPercentage !== 100 ? 0.35 : 1,
-        }}
+        disabled={totalPercentage !== 100}
+        className="mt-section"
       >
         Continua
-      </button>
+      </Button>
 
       {scrollTopVisible && (
         <button
-          className="company-pill"
+          className="btn-circle"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           style={{
             position: "fixed",
             bottom: "30px",
             right: "30px",
-            width: "48px",
-            height: "48px",
-            borderRadius: "50%",
-            fontSize: "20px",
+            zIndex: 999,
           }}
         >
           ↑
         </button>
       )}
-    </div>
+    </PageContainer>
   );
 }

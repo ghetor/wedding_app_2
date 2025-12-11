@@ -160,7 +160,11 @@ body {
 .slider-ghet {
   width: 100%;
   accent-color: var(--accent);
+  height: 4px;
+  margin-top: 12px;
+  margin-bottom: 8px;
 }
+
 
 /* POPUP */
 .popup-overlay {
@@ -195,4 +199,12 @@ body {
 
 .mt-22 {
   margin-top: 22px;
+}
+
+.mt-section {
+  margin-top: 28px;
+
+}
+.mb-section {
+  margin-bottom: 28px;
 }

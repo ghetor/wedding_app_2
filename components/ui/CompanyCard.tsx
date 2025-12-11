@@ -18,11 +18,15 @@ export default function CompanyCard({
   className?: string;
 }) {
   return (
-    <div
-      className={`company-card ${selected ? "selected" : ""} ${className || ""}`}
-      onClick={onClick}
-      style={{ cursor: "pointer" }}
-    >
+      <div
+        className={`company-card ${selected ? "selected" : ""} ${className || ""}`}
+        onClick={onClick}
+        style={{
+          cursor: "pointer",
+          padding: "14px 10px",
+        }}
+      >
+
       <div
         onClick={(e) => {
           e.stopPropagation();

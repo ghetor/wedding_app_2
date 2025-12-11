@@ -17,7 +17,7 @@ export default function LandingPage() {
           subtitle="Un modo moderno e divertente per partecipare al nostro regalo."
         />
 
-        <p className="page-subtitle" style={{ marginBottom: "20px" }}>
+        <p className="page-subtitle" style={{ marginBottom: "25px" }}>
           Scegli le aziende, distribuisci il tuo importo e invia il tuo regalo
           sotto forma simbolica di investimento.
         </p>

@@ -42,6 +42,7 @@ export default function ProfiloPage() {
     for (const p of participants) {
       if (!p.nome || !p.cognome) return alert("Completa tutti i campi.");
     }
+
     setParticipants(participants);
     setMessage(message);
     router.push("/aziende");
@@ -56,22 +57,33 @@ export default function ProfiloPage() {
 
         <p className="page-subtitle">Inserisci l'importo da regalare</p>
 
-        <div className="flex-center" style={{ gap: "16px", marginBottom: "22px" }}>
-          <button className="btn-circle" onClick={() => changeAmount(-10)}>
-            –
-          </button>
-
+        {/* IMPORTO + PULSANTI */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "14px",
+            marginBottom: "25px",
+            marginTop: "5px",
+          }}
+        >
           <Input
             type="number"
             value={amount}
             onChange={(e) => setAmount(Number(e.target.value))}
             className="text-center"
-            style={{ maxWidth: "180px", fontSize: "22px" }}
+            style={{ width: "150px", fontSize: "22px" }}
           />
 
-          <button className="btn-circle" onClick={() => changeAmount(+10)}>
-            +
-          </button>
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <button className="btn-circle" onClick={() => changeAmount(+10)}>
+              +
+            </button>
+            <button className="btn-circle" onClick={() => changeAmount(-10)}>
+              –
+            </button>
+          </div>
         </div>
 
         <h3 className="page-subtitle" style={{ textAlign: "left" }}>
@@ -79,7 +91,7 @@ export default function ProfiloPage() {
         </h3>
 
         {participants.map((p, i) => (
-          <div key={i} style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+          <div key={i} style={{ display: "flex", gap: "10px", marginBottom: "12px" }}>
             <Input
               placeholder="Nome"
               value={p.nome}
@@ -93,13 +105,17 @@ export default function ProfiloPage() {
           </div>
         ))}
 
-        <div className="flex-center" style={{ gap: "20px", margin: "20px 0" }}>
-          <button className="btn-circle" onClick={remove}>
-            −
-          </button>
-          <button className="btn-circle" onClick={add}>
-            +
-          </button>
+        {/* PULSANTI +/- PARTECIPANTI */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "14px",
+            margin: "18px 0",
+          }}
+        >
+          <button className="btn-circle" onClick={remove}>−</button>
+          <button className="btn-circle" onClick={add}>+</button>
         </div>
 
         <TextArea
@@ -108,7 +124,7 @@ export default function ProfiloPage() {
           onChange={(e) => updateMessage(e.target.value)}
         />
 
-        <Button onClick={handleContinue} className="mt-22">
+        <Button onClick={handleContinue} className="mt-section">
           Continua
         </Button>
       </Card>

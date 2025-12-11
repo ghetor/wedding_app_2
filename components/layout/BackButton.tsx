@@ -10,10 +10,13 @@ export default function BackButton() {
       onClick={() => router.back()}
       className="btn-circle"
       style={{
-        position: "fixed",
-        top: "22px",
-        left: "22px",
+        width: "40px",
+        height: "40px",
+        top: "18px",
+        left: "18px",
+        fontSize: "20px",
         zIndex: 1000,
+        position: "fixed",
       }}
     >
       ←
