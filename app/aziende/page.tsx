@@ -9,10 +9,6 @@ import { useGiftStore } from "@/store/useGiftStore";
 
 export default function AziendePage() {
   const router = useRouter();
-
-  // -------------------------------
-  // STORE ZUSTAND
-  // -------------------------------
   const { selectedCompanies, setSelectedCompanies } = useGiftStore();
 
   interface Company {
@@ -22,24 +18,16 @@ export default function AziendePage() {
     description: string;
   }
 
-  // -------------------------------
-  // LOCAL UI STATE
-  // -------------------------------
   const [search, setSearch] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [sortAsc, setSortAsc] = useState(true);
   const [popupCompany, setPopupCompany] = useState<Company | null>(null);
   const [showFilterMenu, setShowFilterMenu] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [scrollTopVisible, setScrollTopVisible] = useState(false);
 
-  // Local names for highlight
-  const localSelectedNames = selectedCompanies.map((c) => c.name);
-
-  // CATEGORIES
   const categories = Array.from(new Set(companies.map((c) => c.category)));
 
-  // FILTERING + SORTING
-  const filteredCompanies = companies
+  const filtered = companies
     .filter((c) => c.name.toLowerCase().includes(search.toLowerCase()))
     .filter(
       (c) =>
@@ -50,160 +38,73 @@ export default function AziendePage() {
       sortAsc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
     );
 
-  // TOGGLE CATEGORY
-  function toggleCategory(category: string) {
-    if (selectedCategories.includes(category)) {
-      setSelectedCategories(selectedCategories.filter((c) => c !== category));
+  function toggleCategory(cat: string) {
+    if (selectedCategories.includes(cat)) {
+      setSelectedCategories(selectedCategories.filter((c) => c !== cat));
     } else {
-      setSelectedCategories([...selectedCategories, category]);
+      setSelectedCategories([...selectedCategories, cat]);
     }
   }
 
-  // -------------------------------
-  // TOGGLE COMPANY — CORRETTO
-  // -------------------------------
   function toggleCompany(company: Company) {
     const exists = selectedCompanies.find((c) => c.name === company.name);
 
     if (exists) {
-      // Rimuovi
-      setSelectedCompanies(
-        selectedCompanies.filter((c) => c.name !== company.name)
-      );
+      setSelectedCompanies(selectedCompanies.filter((c) => c.name !== company.name));
     } else {
-      // Aggiungi come SelectedCompany
       setSelectedCompanies([
         ...selectedCompanies,
-        {
-          name: company.name,
-          logo: company.logo,
-          category: company.category,
-          percentage: 0, // necessario per distribuzione
-        },
+        { name: company.name, logo: company.logo, category: company.category, percentage: 0 },
       ]);
     }
   }
 
-  // Scroll to top
   useEffect(() => {
-    function onScroll() {
-      setShowScrollTop(window.scrollY > 400);
-    }
+    const onScroll = () => setScrollTopVisible(window.scrollY > 350);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const selectedNames = selectedCompanies.map((c) => c.name);
+
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#0F141A",
-        padding: "40px 20px",
-        color: "white",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <div className="container-ghet fade">
 
-      <h1 style={{ fontSize: "42px", marginBottom: "30px", fontWeight: "700" }}>
-        Seleziona le aziende
-      </h1>
+      <h1 className="title-ghet">Seleziona le aziende</h1>
 
-      {/* SEARCH + FILTER + SORT */}
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "960px",
-          display: "flex",
-          alignItems: "center",
-          gap: "12px",
-          marginBottom: "14px",
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Cerca azienda..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          style={{
-            flexGrow: 1,
-            padding: "14px 20px",
-            borderRadius: "14px",
-            backgroundColor: "#1E2327",
-            border: "2px solid rgba(255,255,255,0.15)",
-            color: "white",
-            fontSize: "16px",
-          }}
-        />
+      {/* SEARCH BAR */}
+      <input
+        className="input-ghet"
+        placeholder="Cerca azienda..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
-        <button
-          onClick={() => setShowFilterMenu(!showFilterMenu)}
-          style={{
-            width: "46px",
-            height: "46px",
-            borderRadius: "14px",
-            backgroundColor: "#1E2327",
-            border: "2px solid rgba(255,255,255,0.20)",
-            color: "white",
-            fontSize: "20px",
-            cursor: "pointer",
-          }}
-        >
-          ☰
+      {/* FILTER BUTTONS */}
+      <div style={{ display: "flex", gap: "12px", marginTop: "12px" }}>
+        <button className="company-pill" onClick={() => setShowFilterMenu(!showFilterMenu)}>
+          Filtri
         </button>
-
-        <button
-          onClick={() => setSortAsc(!sortAsc)}
-          style={{
-            width: "46px",
-            height: "46px",
-            borderRadius: "14px",
-            backgroundColor: "#1E2327",
-            border: "2px solid rgba(255,255,255,0.20)",
-            color: "white",
-            fontSize: "20px",
-            cursor: "pointer",
-          }}
-        >
-          ⇅
+        <button className="company-pill" onClick={() => setSortAsc(!sortAsc)}>
+          Ordina
         </button>
       </div>
 
       {/* FILTER MENU */}
       {showFilterMenu && (
-        <div
-          style={{
-            width: "100%",
-            maxWidth: "900px",
-            backgroundColor: "#242B2E",
-            padding: "24px 30px",
-            borderRadius: "18px",
-            marginBottom: "25px",
-          }}
-        >
-          <h3 style={{ marginBottom: "16px", fontSize: "18px" }}>
-            Filtra per categoria
-          </h3>
-
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
+        <div className="card" style={{ marginTop: "18px" }}>
+          <h3 className="subtitle-ghet" style={{ textAlign: "left" }}>Categorie</h3>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
             {categories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => toggleCategory(cat)}
+                className="company-pill"
                 style={{
-                  padding: "6px 16px",
-                  borderRadius: "999px",
-                  border: selectedCategories.includes(cat)
-                    ? "2px solid #1B9AAA"
-                    : "2px solid rgba(255,255,255,0.25)",
-                  backgroundColor: selectedCategories.includes(cat)
-                    ? "#144453"
-                    : "#2E3236",
-                  color: "white",
-                  fontSize: "14px",
-                  cursor: "pointer",
+                  borderColor: selectedCategories.includes(cat)
+                    ? "var(--accent)"
+                    : "transparent",
                 }}
+                onClick={() => toggleCategory(cat)}
               >
                 {cat}
               </button>
@@ -212,80 +113,54 @@ export default function AziendePage() {
         </div>
       )}
 
-      {/* COMPANY GRID */}
+      {/* GRID */}
       <div
         style={{
-          width: "140%",
-          maxWidth: "960px",
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
-          gap: "20px",
+          gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))",
+          gap: "16px",
+          marginTop: "20px",
         }}
       >
-        {filteredCompanies.map((c) => {
-          const isSelected = localSelectedNames.includes(c.name);
-
+        {filtered.map((c) => {
+          const selected = selectedNames.includes(c.name);
           return (
-            <div
+            <button
               key={c.name}
+              className="card"
               onClick={() => toggleCompany(c)}
               style={{
-                backgroundColor: "#1E2327",
                 padding: "18px",
-                borderRadius: "18px",
-                textAlign: "center",
-                cursor: "pointer",
-                border: isSelected
-                  ? "3px solid #1B9AAA"
-                  : "2px solid rgba(255,255,255,0.15)",
-                transition: "0.25s",
-                boxShadow: isSelected
-                  ? "0 0 20px #1B9AAA88"
-                  : "0 4px 15px rgba(0,0,0,0.25)",
-                height: "140px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                position: "relative",
+                border: selected ? "2px solid var(--accent)" : "2px solid transparent",
               }}
             >
-              {/* INFO ICON */}
               <div
+                style={{ position: "absolute", top: "12px", right: "12px", fontSize: "12px" }}
                 onClick={(e) => {
                   e.stopPropagation();
                   setPopupCompany(c);
                 }}
-                style={{
-                  position: "absolute",
-                  top: "8px",
-                  right: "8px",
-                  width: "20px",
-                  height: "20px",
-                  borderRadius: "50%",
-                  backgroundColor: "#144453",
-                  color: "white",
-                  fontSize: "14px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
               >
-                i
+                ℹ️
               </div>
 
-              <Image
-                src={c.logo}
-                alt={c.name}
-                width={100}
-                height={100}
-                style={{ margin: "10% auto 10px" }}
-              />
+              <Image src={c.logo} alt={c.name} width={60} height={60} className="company-logo" />
 
-              <p style={{ fontSize: "15px", marginTop: "6px" }}>{c.name}</p>
-            </div>
+              <p style={{ marginTop: "10px" }}>{c.name}</p>
+            </button>
           );
         })}
       </div>
+
+      {/* CONTINUA */}
+      <button
+        className="btn-ghet"
+        disabled={selectedCompanies.length === 0}
+        onClick={() => router.push("/distribuzione")}
+        style={{ marginTop: "30px", opacity: selectedCompanies.length === 0 ? 0.4 : 1 }}
+      >
+        Continua
+      </button>
 
       {/* POPUP */}
       {popupCompany && (
@@ -293,127 +168,55 @@ export default function AziendePage() {
           onClick={() => setPopupCompany(null)}
           style={{
             position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0,0,0,0.6)",
+            inset: 0,
+            background: "rgba(0,0,0,0.6)",
             backdropFilter: "blur(6px)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             padding: "20px",
-            zIndex: 999,
+            zIndex: 9999,
           }}
         >
           <div
+            className="card"
             onClick={(e) => e.stopPropagation()}
-            style={{
-              backgroundColor: "#242B2E",
-              padding: "30px",
-              borderRadius: "25px",
-              maxWidth: "420px",
-              textAlign: "center",
-            }}
+            style={{ maxWidth: "420px", textAlign: "center" }}
           >
-            <Image
-              src={popupCompany.logo}
-              width={60}
-              height={60}
-              alt={popupCompany.name}
-            />
-
-            <h2 style={{ marginTop: "15px" }}>{popupCompany.name}</h2>
-
+            <Image src={popupCompany.logo} width={60} height={60} alt={popupCompany.name} />
+            <h2 className="subtitle-ghet" style={{ marginTop: "12px" }}>
+              {popupCompany.name}
+            </h2>
             <p style={{ opacity: 0.9, marginBottom: "25px" }}>
               {popupCompany.description}
             </p>
-
-            <button
-              onClick={() => setPopupCompany(null)}
-              style={{
-                padding: "10px 25px",
-                borderRadius: "999px",
-                backgroundColor: "#144453",
-                color: "white",
-                border: "2px solid rgba(255,255,255,0.2)",
-                cursor: "pointer",
-              }}
-            >
+            <button className="btn-ghet" onClick={() => setPopupCompany(null)}>
               Chiudi
             </button>
           </div>
         </div>
       )}
 
-      {/* CONTINUE BUTTON */}
-      <div style={{ marginTop: "50px", marginBottom: "60px" }}>
-        <button
-          onClick={() => router.push("/distribuzione")}
-          style={{
-            padding: "16px 42px",
-            backgroundColor: "#144453",
-            border: "2px solid rgba(255,255,255,0.25)",
-            color: "white",
-            fontSize: "20px",
-            borderRadius: "999px",
-            cursor: "pointer",
-            opacity: selectedCompanies.length === 0 ? 0.35 : 1,
-            pointerEvents: selectedCompanies.length === 0 ? "none" : "auto",
-          }}
-        >
-          CONTINUA
-        </button>
-      </div>
-
-      {/* SCROLL TO TOP */}
-      {showScrollTop && (
+      {/* SCROLL TOP */}
+      {scrollTopVisible && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="company-pill"
           style={{
             position: "fixed",
-            right: "20px",
             bottom: "30px",
-            width: "48px",
-            height: "48px",
+            right: "30px",
             borderRadius: "50%",
-            backgroundColor: "rgba(255,255,255,0.18)",
-            backdropFilter: "blur(6px)",
-            color: "white",
-            fontSize: "22px",
-            border: "2px solid rgba(255,255,255,0.25)",
-            cursor: "pointer",
-            zIndex: 9999,
+            padding: "0",
+            width: "50px",
+            height: "50px",
+            fontSize: "24px",
+            textAlign: "center",
           }}
         >
           ↑
         </button>
       )}
-
-      {/* BACK BUTTON */}
-      <button
-        onClick={() => router.back()}
-        style={{
-          position: "fixed",
-          top: "28px",
-          left: "28px",
-          width: "46px",
-          height: "46px",
-          borderRadius: "50%",
-          backgroundColor: "rgba(255,255,255,0.12)",
-          backdropFilter: "blur(6px)",
-          color: "white",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          fontSize: "20px",
-          border: "2px solid rgba(255,255,255,0.25)",
-          cursor: "pointer",
-          zIndex: 9999,
-        }}
-      >
-        ←
-      </button>
     </div>
   );
 }
