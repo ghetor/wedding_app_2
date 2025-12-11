@@ -34,7 +34,9 @@ export default function ProfiloPage() {
   }
 
   function remove() {
-    if (participants.length > 1) updateParticipants(participants.slice(0, -1));
+    if (participants.length > 1) {
+      updateParticipants(participants.slice(0, -1));
+    }
   }
 
   function handleContinue() {
@@ -57,7 +59,7 @@ export default function ProfiloPage() {
 
         <p className="page-subtitle">Inserisci l'importo da regalare</p>
 
-        {/* IMPORTO + PULSANTI */}
+        {/* IMPORTO + PULSANTI ORIZZONTALI */}
         <div
           style={{
             display: "flex",
@@ -76,13 +78,10 @@ export default function ProfiloPage() {
             style={{ width: "150px", fontSize: "22px" }}
           />
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            <button className="btn-circle" onClick={() => changeAmount(+10)}>
-              +
-            </button>
-            <button className="btn-circle" onClick={() => changeAmount(-10)}>
-              –
-            </button>
+          {/* BOTTONI ORIZZONTALI */}
+          <div style={{ display: "flex", flexDirection: "row", gap: "12px" }}>
+            <button className="btn-circle" onClick={() => changeAmount(-10)}>–</button>
+            <button className="btn-circle" onClick={() => changeAmount(+10)}>+</button>
           </div>
         </div>
 
@@ -105,7 +104,7 @@ export default function ProfiloPage() {
           </div>
         ))}
 
-        {/* PULSANTI +/- PARTECIPANTI */}
+        {/* PULSANTI PARTECIPANTI */}
         <div
           style={{
             display: "flex",
